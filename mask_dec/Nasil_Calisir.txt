@@ -1,0 +1,23 @@
+-Size gönderdiğim "mask_dec.rar" dosyasında "mask_dec" adlı bir dosya var. öncelikle o dosyayı dışa aktarın. 
+
+-Daha sonrsında o dosyanın içine girdiğinizde karşınıza learning için çalıştıracağınınz ve tahminleme yapacağınız dosyalar bulunmaktadır. 
+
+-Dataset'i bu "mask_dec" klasörüne "dataset" ismiyle atmanız gerekmektedir.
+
+-Bu "dataset" kalsörü içinde ise iki klasör olmalı "maskeli" , "maskesiz". dikkat etmemiz gereken şey "model_tf.py" dosyası ile aynı konumda olması yani en başta belirttiğim gibi "mask_dec" klasörü içinde olmalı hepsi.
+
+-Bu işlemi yaptıktan sonra model öğrenirken artık gerekli fotoğraflara erişim sağlayacaktır.
+
+-Bunları yaptıktan sonra ben spyder kullandığım için diyorum, spyder üzerinden run etmeniz yeterli olacaktır.model artık öğrenme işlemine başlayacaktır .
+
+-Tahminleme yapma için yani "detection" işlemini gerçekleştirmek için "predict.py" adlı projeyi çalıştırmanız gerek. bunun için dikkat etmeniz gereken şey ise "model.h5" dosyasıyla aynı konumda olması. 
+
+-Bu "h5" uzantılı dosyamız daha demin modelimizin öğrenmiş halinin başka projede de kullanıma imkan sunması için save edilmiş halidir. 
+
+-"predict.py" projemiz ilk olarak bu "model.h5" modelini projeye load ediyor. 
+
+-Daha sonrasında ise bizlere console ekranında bir fotoğraf yolu beklediğini söylüyor. 
+
+-Sizler istediğiniz fotoğrafın yolunu belirtebilirsiniz. burada bir diğer önemli husus ise fotoğrafın olduğu sürücüde "OpenCV" kurulu olması. yani "C" sürücüsünde kurulu ise fotoğrafı " C " sürücüsünde bir konuma kaydediniz. örneğin masaüstü gibi. 
+
+-Ben denediğimde D sürücüsünde olan bir fotoğraf için işlem yapılmıyor. bu yüzden en sağlıklısı gene "predict.py" ile aynı klasörde olan bir fotoğrafı sadece fotoğrafın ismi ve yolu ile belirtiniz örn: "fotograf.jpg". bunun için aynı dosya konumunda olmalarına dikkat ediniz

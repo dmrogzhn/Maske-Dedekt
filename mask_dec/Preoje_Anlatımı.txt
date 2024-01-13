@@ -1,0 +1,33 @@
+Projemiz "maske dedektör" projesidir.
+
+iki aşamadan oluşur. Modelin öğrendiği proje ve yeni fotoğrafın gönderilip tahmin sonucunun alındığı proje.
+
+modelin öğrendiği projede (model_tf.py) modelimiz dataset içindeki fotoğraflara erişerek öğrenim işlemini gerçekleştiriyor. maskeli ve maskesiz olan dosyalarımız proje içinde "os" kütüphanesi sayesinde erişilip ayarladığımız boyutlar ve renk skalasına dönüştükten sonra bir diziye atılıyor daha sonrasında bu diziden de np.array a döüştürelek sayısal hale getiriliyor.
+
+Bu esnada "one-hot encoding" işlemi uygulandı ki modelimiz sayısal değerleri birer ağırlık olarak almasın. yani hepsi "0-1" olarak tekrardan düzenlendi.
+
+Daha sonrasında ise "train-test" olarak ayırdık ve %20 test kısmı olarak belirlendi.
+
+Data generator işlemi ile fotoğraflar daha farklı açılar haline getirildi. "zoom, aynalama vs." yöntemlerle çeşitlendirilme yapıldı.
+
+Bir sonraki işlem daha önceden oluşmuş modelden base olarak kullnımı. Bunun amacı ise asıl modelimizi daha rahat halde fit etmek oluyor. aslında öğrenmiş model sadyesinde bazı işlemleri daha rahat yapması için örnek olmak gibi anlatılabilir.
+
+Sıra yaptığımız tüm işlemleri(preprocessing) modelimize compile ederek yani aslında bu işlemleri modelimize uygulayarak fit etmeye yani eğimeye geliyor.
+
+Belirlediğimiz alogirtmalar ile örn:"adam" vs. kullanılarak ve "Dense-Epoch" gibi parametler yani gizli katmanlar( nöral ağlar vb.) girildikten sonra artık modelimiz öğrenme işlemine başlar.
+
+İşlem sırasında oluşan "loss ve val-loss" değerleri kaybolan veriyi gösterir. tabii bu fotoğrafların silinmesi değildir. öğrenirken tahminlemenin ne kadar doğruluğudur dersek yaklaşmış oluruz aslında.
+
+Bu değerler bizler için önemli ve öğrenirken her bir epoch değerinde azalıp bir yerde stabil kalmalıdır. 0 olur ise artık modelimiz öğrenmiş değil ezberlemiş  olur ve buda elimizdeki veriden başka bir veri üzerinde çalıştığımızda aslında modelin düzgün cevap veremeyeceği anlamına gelir.
+
+Model fit edildikten sonra bu değerletin plot tablosuna bakılarak nasıl azaldığı kontrol edildi ve aslnda istenilen şekilde azaldığı görüldü.
+Artık modelimiz yeni tahminlere açık bir model oldu.
+
+precit.py projesinde ise tahminleme yapılıyor. 
+proje çalıştığında modelimizin yolu belitilerek projemize ekleniyor. daha sonrasında ise bizden bir fotoğraf yolu bekliyor.
+
+fotoğraf yolunu aldıktan sonra doğru formatta bir yol geldi mi kontrol ediyor (png,jpg,jpeg). eğer format doğru değil ise uyarı verip tekrar yol bekliyor.
+yol doğru bir şekilde geldikten sonra fotoğrafımızı modelimize uygun hale getiriyoruz (preprocessing). fotoğrafımız resize edilip 0-255 aralığında pixel değerine getiriliyor.
+Daha sonrasında ise modelimize fotoğrafımız gönderilerek tahmin sonucu döndürülüyor. çıkan sonuç gönderidiğimiz fotoğrafın üzerine yazılıyor. maske yok ise kırmızı var ise yeşil renk kullanılıyor.
+
+
