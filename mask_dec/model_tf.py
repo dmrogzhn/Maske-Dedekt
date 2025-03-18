@@ -35,7 +35,7 @@ classes = ["maskeli", "maskesiz"]
 
 
 INIT_LR = 1e-4  # başlangıç öğrenme hızı
-EPOCHS = 20     # eğitim için kullanılacak katman sayısı
+EPOCHS = 20     # eğitim için kullanılacak tekrar sayısı
 BS = 32         #eğitim setini parçalayarak öğrenmesini sağlat (daha hızlı ve sağlıklı işlemler için)
 
 # veriler ve verilerin sonuçlarının tutlulacağı dizileri oluşturuyoruz
@@ -59,7 +59,6 @@ for cl in classes:
     	label.append(cl)
 
 
-# one-hot encoding yapıldı ki kategoriler arasında ağırlık varmış gibi olmasın
 lb = LabelBinarizer()
 label = lb.fit_transform(label)
 label = to_categorical(label)
